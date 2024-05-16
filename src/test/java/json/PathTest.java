@@ -43,6 +43,7 @@ public class PathTest {
         JsonPath jsonPath = new JsonPath(string);
         System.out.println(jsonPath.getString("projects.project[0].name"));
         System.out.println(jsonPath.getString("projects.project.name"));
+        System.out.println(jsonPath.getList("projects.project.name"));
 
         JsonPath js = new JsonPath(string2);
 

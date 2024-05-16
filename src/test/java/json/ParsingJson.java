@@ -39,6 +39,7 @@ public class ParsingJson {
                 body("projects.project.size()", equalTo(6));
 
     }
+    //multiple assertions with and()
     @Test
     public void testJsonChainCalls() {
         RestAssured.

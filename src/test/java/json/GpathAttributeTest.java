@@ -11,6 +11,10 @@ public class GpathAttributeTest {
     String xmlendpoint = "https://testpages.herokuapp.com/apps/mocktracks/projectsxml.php";
 
     /*
+    XmlPath Usage
+    XmlPath is used to parse XML data and access specific elements.
+     */
+    /*
     XML tags can have attributes e.g. the id tag in project has a type attribute.
     <id type="integer">1</id>
     We can access the attributes using GPath with the @ symbol:

@@ -113,3 +113,7 @@ We convert this JSON data to a String and parse it using JsonPath.
 We use JsonPath to access a specific field within the JSON and check if it has the expected value.
 Parsing is crucial for processing raw data, transforming it into a more meaningful and usable form, 
 making it easier to work with the data.
+
+###
+XmlPath Usage
+XmlPath is used to parse XML data and access specific elements.

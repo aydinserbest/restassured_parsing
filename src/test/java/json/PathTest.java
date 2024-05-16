@@ -18,6 +18,11 @@ public class PathTest {
         System.out.println(list.get(0));
     }
     @Test
+    public void testJsonPath8() {
+        List<Object> list = RestAssured.when().get(jsonendpoint).jsonPath().getList("projects.project.name");
+        System.out.println(list.get(0));
+    }
+    @Test
     public void testJsonPath() {
         List<Object> list = RestAssured.
                 when().
@@ -31,10 +36,17 @@ public class PathTest {
                 when().
                 get(jsonendpoint);
         String string = response.body().asString();
-
+            //or
+            String string2 = response.asString();
+                //or
+                String string3 = response.getBody().asString();
         JsonPath jsonPath = new JsonPath(string);
         System.out.println(jsonPath.getString("projects.project[0].name"));
         System.out.println(jsonPath.getString("projects.project.name"));
+
+        JsonPath js = new JsonPath(string2);
+
+        System.out.println(js.getString("projects.project.name"));
     }
     @Test
     public void testJsonPath3() {
@@ -72,10 +84,18 @@ public class PathTest {
     }
     @Test
     public void testJsonPath6() {
+        /*
+        XML paths in Rest Assured often return NodeChildrenImpl objects rather than List objects,
+        which leads to a ClassCastException when you try to cast it directly to a List.
+
+        Unlike JSON paths, which directly map to List objects, XML paths require a different handling due to their hierarchical nature.
+
+        To address this, you should first extract the response as a string
+        and then use XmlPath to parse and retrieve the list of names properly.
+         */
         List<Object> path = RestAssured.when().get(xmlendpoint).then().extract().path("projects.project.name");
 
         System.out.println(path.get(0));
         System.out.println(path.get(1));
-
     }
 }

@@ -2,6 +2,7 @@ package json;
 
 import io.restassured.RestAssured;
 import io.restassured.path.xml.XmlPath;
+import io.restassured.path.xml.config.XmlPathConfig;
 import io.restassured.path.xml.element.Node;
 import io.restassured.path.xml.element.NodeChildren;
 import io.restassured.response.Response;
@@ -20,7 +21,54 @@ public class WorkingWithGetNodeChildrenMethod {
     //Using getNodeChildren with NodeChildren:
 
     @Test
-    public void testXmlWithGetNodeChildren() {
+    public void testXmlWithGetNodeChildren1() {
+        String xmlendpoint = "https://testpages.herokuapp.com/apps/mocktracks/projectsxml.php";  // Replace with the actual endpoint
+
+        // Send an HTTP GET request and get the response
+        Response response = RestAssured.when().get(xmlendpoint).andReturn();
+
+        // Get the response body as a String
+        String responseBody = response.getBody().asString();
+        System.out.println(responseBody);
+
+        // Parse the XML response with DOCTYPE declaration allowed
+        XmlPath xmlPath = new XmlPath(responseBody).using(new XmlPathConfig().allowDocTypeDeclaration(true));
+
+        // Access all child elements of the projects
+        NodeChildren nodes = xmlPath.getNodeChildren("projects.project");
+
+        // Check the number of projects
+        assertEquals(6, nodes.size());  // Expecting 6 projects
+
+        // Loop through each node and check the name and id
+        for (int i = 0; i < nodes.size(); i++) {
+            Node node = (Node) nodes.get(i);
+            String name = node.get("name").toString();
+            String id = node.get("id").toString();
+            System.out.println("Project Name: " + name + ", Project ID: " + id);
+        }
+
+        // Check the name and id of each project
+        assertEquals("A New Projectaniheeiadtatd", ((Node) nodes.get(0)).get("name").toString());
+        assertEquals("1", ((Node) nodes.get(0)).get("id").toString());
+
+        assertEquals("the new name aniheeiaosono", ((Node) nodes.get(1)).get("name").toString());
+        assertEquals("3", ((Node) nodes.get(1)).get("id").toString());
+
+        assertEquals("A New Projectaniheeiaoaees", ((Node) nodes.get(2)).get("name").toString());
+        assertEquals("5", ((Node) nodes.get(2)).get("id").toString());
+
+        assertEquals("A New Projectaniheeidrdhtd", ((Node) nodes.get(3)).get("name").toString());
+        assertEquals("6", ((Node) nodes.get(3)).get("id").toString());
+
+        assertEquals("the new name aniheeidrettt", ((Node) nodes.get(4)).get("name").toString());
+        assertEquals("8", ((Node) nodes.get(4)).get("id").toString());
+
+        assertEquals("A New Projectaniheeidrrhad", ((Node) nodes.get(5)).get("name").toString());
+        assertEquals("10", ((Node) nodes.get(5)).get("id").toString());
+    }
+    @Test
+    public void testXmlWithGetNodeChildren2() {
 
         // Send an HTTP GET request and get the response
         Response response = RestAssured.when().get(xmlendpoint).andReturn();
@@ -58,7 +106,7 @@ public class WorkingWithGetNodeChildrenMethod {
         assertEquals("10", ((Node) projects.get(5)).get("id").toString());
     }
     @Test
-    public void testXmlWithGetNodeChildren2() {
+    public void testXmlWithGetNodeChildren3() {
         String xmlendpoint = "https://testpages.herokuapp.com/apps/mocktracks/projectsxml.php";  // Replace with the actual endpoint
 
         // Send an HTTP GET request and get the response
@@ -104,7 +152,29 @@ public class WorkingWithGetNodeChildrenMethod {
 
     }
 
+    //Using getList:
+    //Here is an example showing how to use the getList method to get project names from the XML:
 
+    @Test
+    public void testXmlWithGetList() {
+        String xmlendpoint = "http://example.com/api/projects";  // Replace with the actual endpoint
+
+        // Send an HTTP GET request and get the response
+        Response response = RestAssured.when().get(xmlendpoint).andReturn();
+
+        // Get the response body as a String
+        String responseBody = response.getBody().asString();
+
+        // Parse the XML response
+        XmlPath xmlPath = new XmlPath(responseBody);
+
+        // Get a list of project names
+        List<String> projectNames = xmlPath.getList("projects.project.name");
+        System.out.println(projectNames);
+
+        // Check the number of projects
+        assertEquals(3, projectNames.size());
+    }
     @Test
     public void testWithGetList() {
 
@@ -142,29 +212,6 @@ public class WorkingWithGetNodeChildrenMethod {
 
         assertEquals("A New Projectaniheeidrrhad", xmlPath.getString("projects.project[5].name"));
         assertEquals("10", xmlPath.getString("projects.project[5].id"));
-    }
-    //Using getList:
-    //Here is an example showing how to use the getList method to get project names from the XML:
-
-    @Test
-    public void testXmlWithGetList() {
-        String xmlendpoint = "http://example.com/api/projects";  // Replace with the actual endpoint
-
-        // Send an HTTP GET request and get the response
-        Response response = RestAssured.when().get(xmlendpoint).andReturn();
-
-        // Get the response body as a String
-        String responseBody = response.getBody().asString();
-
-        // Parse the XML response
-        XmlPath xmlPath = new XmlPath(responseBody);
-
-        // Get a list of project names
-        List<String> projectNames = xmlPath.getList("projects.project.name");
-        System.out.println(projectNames);
-
-        // Check the number of projects
-        assertEquals(3, projectNames.size());
     }
     /*
     Explanation:

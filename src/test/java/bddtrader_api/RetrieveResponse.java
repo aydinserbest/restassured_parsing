@@ -188,7 +188,7 @@ public class RetrieveResponse {
 
 
     /*
-    Plugin.Engine.Summary:
+    Summary:
     JsonPath.from(String):
     A static method that parses a JSON string and returns a JsonPath object.
     It is often used after converting the response body to a string.

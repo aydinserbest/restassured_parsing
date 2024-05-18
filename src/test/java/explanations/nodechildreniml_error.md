@@ -1,5 +1,5 @@
 
-1- with json response:
+1- with tracks_api response:
 
         List<Object> list = RestAssured.when().get(jsonendpoint).then().extract().path("projects.project.name");
 test passes.

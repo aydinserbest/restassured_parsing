@@ -1,4 +1,4 @@
-package json;
+package tracks_api;
 
 import io.restassured.RestAssured;
 import io.restassured.path.xml.XmlPath;

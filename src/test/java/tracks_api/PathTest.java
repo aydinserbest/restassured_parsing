@@ -94,9 +94,14 @@ public class PathTest {
         To address this, you should first extract the response as a string
         and then use XmlPath to parse and retrieve the list of names properly.
          */
-        List<Object> path = RestAssured.when().get(xmlendpoint).then().extract().path("projects.project.name");
+        //so the below line will give error
+       // List<Object> path = RestAssured.when().get(xmlendpoint).then().extract().path("projects.project.name");
+        //to fix it:
+        String path = RestAssured.when().get(xmlendpoint).asString();
+                XmlPath xmlPath = new XmlPath(path);
+        List<Object> path2 = xmlPath.getList("projects.project.name");
 
-        System.out.println(path.get(0));
-        System.out.println(path.get(1));
+        System.out.println(path2.get(0));
+        System.out.println(path2.get(1));
     }
 }

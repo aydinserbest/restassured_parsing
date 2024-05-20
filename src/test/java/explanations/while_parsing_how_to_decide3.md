@@ -125,7 +125,8 @@ For example, to get a list of all "firstName" fields, we can use the getList() m
     }
 
 Retrieving a Specific Object
-We can use the getObject() method to get a specific object in the array. For example, to get the first user:
+We can use the getObject() method to get a specific object in the array. 
+For example, to get the first user:
 
     @Test
     public void getFirstUser() {
@@ -166,13 +167,18 @@ Understanding the JSON structure is critical when choosing JsonPath methods. In 
 
 We identified that the JSON structure is an array.
 We saw that each element in the array is a JSON object.
-Using JsonPath, we can retrieve the entire array, lists of specific fields, specific objects, or specific field values.
+Using JsonPath, we can retrieve 
+        -the entire array, 
+        -lists of specific fields, 
+        -specific objects, 
+        -or specific field values.
 
 Summary
 Array: 
 The JSON structure is an array indicated by square brackets [].
 Objects: 
 Each element within the array is a JSON object indicated by curly braces {}.
+
 Using JsonPath: 
 Understanding the JSON structure helps guide your choice of JsonPath methods. 
 You can choose appropriate JsonPath methods for retrieving arrays, objects, 

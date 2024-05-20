@@ -34,6 +34,8 @@ public class RetrieveResponse {
         JsonPath jsonPath = new JsonPath(response);
         // Access the name field of the first project in the JSON response
         System.out.println(jsonPath.getString("projects.project[0].name"));
+        System.out.println(jsonPath.getList("projects.project"));
+        System.out.println(jsonPath.getString("projects.project[1].name"));
     }
 
     @Test

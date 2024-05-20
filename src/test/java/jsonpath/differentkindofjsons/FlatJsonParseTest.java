@@ -13,7 +13,36 @@ public class FlatJsonParseTest {
             {
           "id": 1,
           "name": "A New Project"
-        }
+            }
+     */
+    /*
+        In this JSON structure:
+
+        "id": Key, 1: Value
+        "name": Key, "A New Project": Value
+     */
+    /*
+        Key: The name of a field in a JSON object.
+                For example, "id", "name", "projects", "project".
+        Value: The data corresponding to a key. Values can be of various types:
+                number (1, 3),
+                string ("A New Project"),
+                object ({"project": [...]}),
+                or array ([...]).
+     */
+
+    /*
+        This JSON structure defines a simple JSON object.
+        In general, the {} symbols represent an object in JSON.
+        Object: A collection of key-value pairs. For example, {"id": 1, "name": "A New Project"}
+
+        Here, "id" and "name" are keys within this object,
+        and their values are simple data types (integer and string, respectively).
+        This is a flat structure where the keys and values are directly within the main object.
+
+        the value after the : can be a simple data types (integer and string).
+                              another JSON object
+                              or any other data type.
      */
     @Test
     public void testFlatJson() {

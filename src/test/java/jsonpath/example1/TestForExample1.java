@@ -10,6 +10,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
+
 public class TestForExample1 {
     /*
     {
@@ -82,76 +84,94 @@ public class TestForExample1 {
     //TODO: 3 ways
     @Test
     public void gettingObjectUsingGetMapMethod4() {
-        RestAssured.
+        Map<String, Object> map = RestAssured.
                 when().
                 get(jsonendpoint).
                 jsonPath().
                 getMap("projects.project[0]");
 
-        ///
-        RestAssured.
+        // Print the "name" value
+        System.out.println(map.get("name"));
+
+        // Verify the "name" value
+        assertEquals("A New Projectaniheeiadtatd", map.get("name"));
+    }
+    @Test
+    public void gettingObjectUsingExtractBodyMethod() {
+
+        String response = RestAssured.
                 when().
                 get(jsonendpoint).
                 then().
                 extract().body().asString();
-        //or
-        //.then().extract().path("projects.project[0].name");
 
-        ///
-        RestAssured.
-                when().
-                get(jsonendpoint).body().asString();
+        JsonPath jsonPath = new JsonPath(response);
+        String nameOfFirstElement = jsonPath.get("projects.project[0].name");
 
+        //verify the 'name' value
+        assertEquals("A New Projectaniheeiadtatd", nameOfFirstElement);
     }
-    //TODO: asString method?
     @Test
-    public void gettingObjectUsingGetMapMethod5() {
-        RestAssured.
+    public void extractPathMethod(){
+        String path = RestAssured.
                 when().
                 get(jsonendpoint).
-                jsonPath().
-                getList("projects.project");
-        // OR
+                then().
+                extract().path("projects.project[0].name");
+
+        //verify the 'name' value
+        assertEquals("A New Projectaniheeiadtatd", path);
+    }
+    @Test
+    public void gettingObjectAsString() {
         String response = RestAssured.
                 when().
                 get(jsonendpoint).asString();
         JsonPath jsonPath = new JsonPath(response);
         jsonPath.getList("projects.project");
-
-        //or
-        JsonPath jsonPath2 = new JsonPath(RestAssured.get(jsonendpoint).asString());
+    }
+    @Test
+    public void returnStringInsideParameter() {
+        JsonPath jsonPath = new JsonPath(RestAssured.get(jsonendpoint).asString());
         jsonPath.getList("projects.project");
-        //or
-        JsonPath jsonPath3 = RestAssured.when().get(jsonendpoint).jsonPath();
-        jsonPath3.getList("projects.project");
-        //OR
-        JsonPath jsonPath4 = new JsonPath(jsonendpoint);
-        jsonPath4.getList("projects.project");
-
-        //or
-        // Convert the response body to a string
-        //String responseBody = response.getBody().asString();
-
-        //ARA LAZIM OLAN METOT, USTTEKILERE GEREK YOKTU:
-        Response response2 = RestAssured.
+    }
+    @Test
+    public void returnJsonPath() {
+        JsonPath jsonPath = RestAssured.when().get(jsonendpoint).jsonPath();
+        jsonPath.getList("projects.project");
+    }
+    @Test
+    public void andReturnMethod() {
+        Response response = RestAssured.
                 when().
                 get(jsonendpoint).
                 andReturn();
-        String responseBody = response2.getBody().asString();
-        //or
-        JsonPath.from(responseBody);
-        //OR
-        JsonPath jsonPath5 = new JsonPath(response2.body().asString());
+        String responseBody = response.getBody().asString();
+        JsonPath jsonPath = new JsonPath(responseBody);
 
-        //or path() metodu
-        // burda 2 konu var 1-path metodunun kullanisi
-        //2- then . extract uygulamasina benzerlik, ustte testte kullanmistik
-        String response6 = RestAssured.
-                when().
-                get(jsonendpoint).then().extract().path("projects.project[0].name");
-        System.out.println(response);
-
+        String nameOfFirstElement = jsonPath.get("projects.project[0].name");
+        //verify the 'name' value
+        assertEquals("A New Projectaniheeiadtatd", nameOfFirstElement);
     }
+    @Test
+    public void fromMethod() {
+        String responseBody = RestAssured.
+                when().
+                get(jsonendpoint).asString();
+
+        JsonPath from = JsonPath.from(responseBody);
+    }
+    @Test
+    public void fromMethod2() {
+        Response response = RestAssured.
+                when().
+                get(jsonendpoint).
+                andReturn();
+
+        JsonPath jsonPath5 = new JsonPath(response.body().asString());
+    }
+
+
     //TODO:
     /*
      // Parse the JSON response into a List<Project>
@@ -174,15 +194,18 @@ public class TestForExample1 {
      */
     //TODO: bunu List<> olarak da dene
     //Project[] projects = response.jsonPath().getObject("projects.project", Project[].class);
-    //TODO:DENE
+
+    //TODO:alttaki kod calisiyor ama
+    // ebookta -parsing from uri basligindaki konu, chatgpt destekli aciklama yaz
 
     @Test
     public void usingURI() throws URISyntaxException {
         URI uri = URI.create(jsonendpoint);
         Response response = RestAssured.get(uri);
         JsonPath jsonPath = response.jsonPath();
+        System.out.println(jsonPath.getString("projects.project[0].name"));
         //OR
-        URI uri2 = new URI(jsonendpoint);
+        //URI uri2 = new URI(jsonendpoint);
         //uri2.getObject("projects.project[0].name");
     }
 }

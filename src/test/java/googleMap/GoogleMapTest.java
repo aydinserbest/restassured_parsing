@@ -1,4 +1,4 @@
-package rahul;
+package googleMap;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;

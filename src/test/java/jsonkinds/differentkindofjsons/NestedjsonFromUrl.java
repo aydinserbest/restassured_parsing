@@ -2,6 +2,7 @@ package jsonkinds.differentkindofjsons;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -31,6 +32,7 @@ public class NestedjsonFromUrl {
                     }
     }
      */
+    String xmlendpoint = "https://testpages.herokuapp.com/apps/mocktracks/projectsxml.php";
     String jsonendpoint = "https://testpages.herokuapp.com/apps/mocktracks/projectsjson.php";
     /*
     TODO: BUNLARI KULLAN TESTLERDE
@@ -217,15 +219,24 @@ public class NestedjsonFromUrl {
     //TODO: bunu List<> olarak da dene
     //Project[] projects = response.jsonPath().getObject("projects.project", Project[].class);
 
-    //TODO:alttaki kod calisiyor ama
-    // ebookta -parsing from uri basligindaki konu, chatgpt destekli aciklama yaz
+    //TODO: AUTOMATING AND TESTING REST API ebook, PAGE:203
+    // TURN BACK WHILE LOOKING AT POJO
+    // in book, the writer, uses POJO class
+    // HERE, i tried XmlPath , it works
+    // but for JsonPath, it doesn't work
 
     @Test
-    public void usingURI() throws URISyntaxException {
-        URI uri = URI.create(jsonendpoint);
-        Response response = RestAssured.get(uri);
-        JsonPath jsonPath = response.jsonPath();
-        System.out.println(jsonPath.getString("projects.project[0].name"));
+    public void usingURIForXMLPath() throws URISyntaxException {
+        URI uri = new URI(xmlendpoint);
+        XmlPath xmlPath = new XmlPath(uri);
+        System.out.println(xmlPath.getString("projects.project[0].name"));
+        //URI uri = new URI(jsonendpoint);
+        //JsonPath js = new JsonPath(uri);
+        //or
+       // URI uri = URI.create(jsonendpoint);
+//        Response response = RestAssured.get(uri);
+//        JsonPath jsonPath = response.jsonPath();
+//        System.out.println(jsonPath.getString("projects.project[0].name"));
         //OR
         //URI uri2 = new URI(jsonendpoint);
         //uri2.getObject("projects.project[0].name");

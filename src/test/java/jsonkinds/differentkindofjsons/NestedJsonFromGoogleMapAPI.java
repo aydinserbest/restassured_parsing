@@ -1,4 +1,4 @@
-package googleMap;
+package jsonkinds.differentkindofjsons;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.Map;
 
-public class GoogleMapTest {
+public class NestedJsonFromGoogleMapAPI {
     /*
     {
     "location": {

@@ -1,4 +1,4 @@
-package jsonkinds.example1;
+package jsonkinds.differentkindofjsons;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestForExample1 {
+public class NestedjsonFromUrl {
     /*
     {
         "projects": {

@@ -1,8 +1,8 @@
-package jsonkinds;
+package jsonkinds.differentkindofjsons;
 
 import org.junit.Test;
 
-public class MethodsOfJsonPath1 {
+public class ArrayJsonBddTraderAPI {
     /*
     [
         {
@@ -41,7 +41,8 @@ public class MethodsOfJsonPath1 {
     The getList() method is used to retrieve all elements in an array from the JSON response,
     and you should decide which method to use by examining the JSON structure.
      */
-    String jsonendpoint = "https://testpages.herokuapp.com/apps/mocktracks/projectsjson.php";
+    //BDD-TRADER API from John course:
+    String jsonendpoint = "http://localhost:9000/api/clients";
     //Let's explore how we can use JsonPath methods to access specific data within this JSON structure.
 
     /*

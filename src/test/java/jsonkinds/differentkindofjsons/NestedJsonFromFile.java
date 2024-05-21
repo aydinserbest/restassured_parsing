@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class NestedJsonParseTest {
+public class NestedJsonFromFile {
     /*
                 {
           "projects": {

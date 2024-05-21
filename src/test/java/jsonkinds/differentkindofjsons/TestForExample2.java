@@ -1,4 +1,4 @@
-package jsonkinds.example2;
+package jsonkinds.differentkindofjsons;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;

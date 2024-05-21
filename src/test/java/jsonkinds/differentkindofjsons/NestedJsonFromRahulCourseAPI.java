@@ -1,4 +1,4 @@
-package rahulCourseDetails;
+package jsonkinds.differentkindofjsons;
 
 import io.restassured.path.json.JsonPath;
 import org.junit.Before;
@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.Set;
 
-public class CourseTest {
+public class NestedJsonFromRahulCourseAPI {
     /*
     {
   "instructor": "RahulShetty",

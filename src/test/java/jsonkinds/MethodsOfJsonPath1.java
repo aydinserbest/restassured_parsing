@@ -1,4 +1,4 @@
-package jsonpath;
+package jsonkinds;
 
 import org.junit.Test;
 

@@ -1,6 +1,7 @@
-package jsonpath.differentkindofjsons;
+package jsonkinds.differentkindofjsons;
 
 import io.restassured.path.json.JsonPath;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
@@ -27,13 +28,16 @@ public class NestedJsonParseTest {
         }
 
      */
+    File nestedJson;
+    @Before
+    public void setup() {
+        // Load the source file
+        nestedJson = new File(System.getProperty("user.dir"), "src/test/resources/json/nestedjson.json");
+    }
     @Test
     public void testNestedJson() {
-        // Load the source file
-        File jsonExample = new File(System.getProperty("user.dir"), "src/test/resources/nestedjson.json");
-
         // Convert the JSON content into a JsonPath object
-        JsonPath jsonPath = new JsonPath(jsonExample);
+        JsonPath jsonPath = new JsonPath(nestedJson);
 
         // Get the map at the path "projects"
         // In this JSON structure, "projects" is a nested object containing the "project" array.

@@ -1,4 +1,4 @@
-package jsonpath;
+package jsonkinds;
 
 import io.restassured.RestAssured;
 import org.junit.Test;

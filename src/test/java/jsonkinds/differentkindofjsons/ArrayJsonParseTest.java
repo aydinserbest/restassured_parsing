@@ -1,4 +1,4 @@
-package jsonpath.differentkindofjsons;
+package jsonkinds.differentkindofjsons;
 
 import io.restassured.path.json.JsonPath;
 import org.junit.Test;

@@ -1,12 +1,14 @@
-package jsonpath.example1;
+package jsonkinds.example1;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -47,11 +49,19 @@ public class TestForExample1 {
                 jsonPath().
                 getObject("projects", Map.class);
     }
+    @Test
+    public void gettingObjectUsingGetMapMethod() {
+        RestAssured.
+                when().
+                get(jsonendpoint).
+                jsonPath().
+                getMap("projects");
+    }
 
     // TODO: CCASTING
 
     @Test
-    public void gettingObjectUsingGetMapMethod() {
+    public void gettingObjectUsingGetMapMethod20() {
         Map<String, Object> projects = RestAssured.
                 when().
                 get(jsonendpoint).
@@ -169,6 +179,18 @@ public class TestForExample1 {
                 andReturn();
 
         JsonPath jsonPath5 = new JsonPath(response.body().asString());
+    }
+    @Test
+    public void fromMethod3() throws MalformedURLException {
+        // Define the URL to the JSON resource
+        URL jsonURL = new URL("https://testpages.herokuapp.com/apps/mocktracks/projectsjson.php");
+
+        // Create a JsonPath object using the URL
+        JsonPath jsonPath = new JsonPath(jsonURL);
+
+        // Now you can use jsonPath to access JSON data
+        System.out.println(jsonPath.getString("projects.project[0].name"));
+        new JsonPath()
     }
 
 

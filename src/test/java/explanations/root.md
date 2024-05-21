@@ -366,3 +366,56 @@ both getObject("", List.class) and getObject("$", List.class) as well as getList
 produce the same result. 
 Therefore, both methods can be used to specify the root directory.
 
+###
+
+What is Meant by "Since the JSON structure is flat"
+The phrase "Since the JSON structure is flat" means that the JSON structure is simple and not nested. 
+This implies that the JSON data consists of direct key-value pairs 
+and does not contain nested structures or complex data types.
+
+Flat JSON Structure
+Given JSON structure:
+
+    {
+    "id": 1,
+    "name": "A New Project"
+    }
+This structure is considered flat because it consists of only key-value pairs 
+and does not contain nested objects or arrays. In other words, each key is directly at the root level.
+
+Code Explanation
+
+    // Get the map at the root level
+    // Since the JSON structure is flat, an empty string ("") as the path will get the entire JSON as a map.
+    Map<String, Object> map = jsonPath.getMap("");
+Since the JSON structure is flat: This indicates that the JSON structure is simple and flat, 
+meaning it is composed of key-value pairs directly at the root level.
+An empty string ("") as the path will get the entire JSON as a map: 
+This means that by using jsonPath.getMap(""), you can retrieve all the data at the root level as a Map. 
+Because the JSON structure is flat, you can access all the key-value pairs at the root level this way.
+Relation to Root
+Yes, this is related to the concept of the root. Being at the root level means that the JSON data is 
+at the topmost level, and this makes the structure flat. 
+Flat structures are composed of direct key-value pairs at the root level without nested structures. 
+Therefore, data at the root level can be easily accessed using jsonPath.getMap("").
+
+In summary, "Since the JSON structure is flat" indicates that the JSON structure is simple and not nested. 
+This means that all data at the root level can be directly accessed, 
+making it easy to retrieve the entire JSON as a map.
+
+
+Because the JSON structure is considered flat and does not contain nested objects or arrays, 
+each key is directly at the root level. 
+This allows you to access it by calling jsonPath.getMap("").
+
+Summary
+Flat Structure: The JSON structure is simple, with direct key-value pairs at the root level.
+No Nested Objects/Arrays: The JSON does not contain any nested structures.
+Accessing Root Level Data: You can access all the key-value pairs at the root level by calling jsonPath.getMap("").
+This is why the following code works for a flat JSON structure:
+
+
+    Map<String, Object> map = jsonPath.getMap("");
+This code retrieves all the data at the root level of the JSON as a Map<String, Object>
+
+

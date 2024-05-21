@@ -24,6 +24,7 @@ In this structure, the naming is as follows:
 
 An object named "courses" exists.
 An array named "project" exists.
+
 Example 2
 Given JSON structure:
 

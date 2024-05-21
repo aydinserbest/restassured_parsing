@@ -71,3 +71,4 @@ public class FlatJsonFromFile {
         System.out.println(map.get("name"));
     }
 }
+

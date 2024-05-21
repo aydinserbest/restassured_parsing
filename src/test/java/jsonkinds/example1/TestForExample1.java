@@ -114,8 +114,9 @@ public class TestForExample1 {
                 get(jsonendpoint).
                 then().
                 extract().body().asString();
-
+        // Now you can use jsonPath to access JSON data
         JsonPath jsonPath = new JsonPath(response);
+        // Access the fields of the first project
         String nameOfFirstElement = jsonPath.get("projects.project[0].name");
 
         //verify the 'name' value
@@ -181,7 +182,7 @@ public class TestForExample1 {
         JsonPath jsonPath5 = new JsonPath(response.body().asString());
     }
     @Test
-    public void fromMethod3() throws MalformedURLException {
+    public void fromURL() throws MalformedURLException {
         // Define the URL to the JSON resource
         URL jsonURL = new URL("https://testpages.herokuapp.com/apps/mocktracks/projectsjson.php");
 
@@ -190,7 +191,6 @@ public class TestForExample1 {
 
         // Now you can use jsonPath to access JSON data
         System.out.println(jsonPath.getString("projects.project[0].name"));
-        new JsonPath()
     }
 
 

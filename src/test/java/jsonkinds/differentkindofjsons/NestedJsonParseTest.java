@@ -38,14 +38,14 @@ public class NestedJsonParseTest {
     public void testNestedJson() {
         // Convert the JSON content into a JsonPath object
         JsonPath jsonPath = new JsonPath(nestedJson);
-
+        //access the 'projects' key
         // Get the map at the path "projects"
         // In this JSON structure, "projects" is a nested object containing the "project" array.
         Map<String, Object> projectsMap = jsonPath.getMap("projects");
 
         // Print the map to see its structure (for debugging purposes)
         System.out.println(projectsMap);
-
+        // Access the project array within projects
         // Extract the "project" array from the "projects" map
         // Here, projectsMap.get("project") returns a list of maps
         List<Map<String, Object>> projectList = (List<Map<String, Object>>) projectsMap.get("project");
@@ -74,4 +74,5 @@ public class NestedJsonParseTest {
         // Print the "name" value of the second project
         System.out.println(projectList.get(1).get("name"));
     }
+
 }

@@ -46,13 +46,14 @@ public class FlatJsonParseTest {
      */
     @Test
     public void testFlatJson() {
+        // Define the file path to the JSON resource
         // Load the source file
         File jsonExample = new File(System.getProperty("user.dir"),
                 "src/test/resources/jsonexample2.json");
 
         // Convert the JSON content into a JsonPath object
         JsonPath jsonPath = new JsonPath(jsonExample);
-
+        // Access the JSON data
         // Get the map at the root level
         // Since the JSON structure is flat, an empty string ("") as the path will get the entire JSON as a map.
         Map<String, Object> map = jsonPath.getMap("");

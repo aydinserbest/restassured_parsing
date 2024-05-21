@@ -21,10 +21,10 @@ Each of these parameters can be used to create a JsonPath object, allowing you t
 ### 1 Using JSON Response as a String (JSON Response from URI):
 
     String response = RestAssured.
-    when().
-    get(jsonendpoint).
-    then().
-    extract().body().asString();
+                            when().
+                            get(jsonendpoint).
+                            then().
+                            extract().body().asString();
     
     JsonPath jsonPath = new JsonPath(response);
 Explanation:
@@ -70,8 +70,8 @@ Using a Reader to read a JSON file and create a JsonPath object can be done with
     public class Main {
     public static void main(String[] args) {
     try {
-    // Define the file path to the JSON resource
-    File jsonFile = new File(System.getProperty("user.dir"), "src/test/resources/json/nestedjson.json");
+            // Define the file path to the JSON resource
+            File jsonFile = new File(System.getProperty("user.dir"), "src/test/resources/json/nestedjson.json");
 
             // Create a Reader object using FileReader
             Reader reader = new FileReader(jsonFile);
@@ -107,8 +107,8 @@ Using an InputStream to read a JSON file and create a JsonPath object can be don
     public class Main {
     public static void main(String[] args) {
     try {
-    // Define the file path to the JSON resource
-    File jsonFile = new File(System.getProperty("user.dir"), "src/test/resources/json/nestedjson.json");
+            // Define the file path to the JSON resource
+            File jsonFile = new File(System.getProperty("user.dir"), "src/test/resources/json/nestedjson.json");
 
             // Create an InputStream object using FileInputStream
             InputStream inputStream = new FileInputStream(jsonFile);
@@ -152,8 +152,8 @@ You can create a JsonPath object using this URL:
         public class Main {
         public static void main(String[] args) {
         try {
-        // Define the URL to the JSON resource
-        URL jsonURL = new URL("https://testpages.herokuapp.com/apps/mocktracks/projectsjson.php");
+            // Define the URL to the JSON resource
+            URL jsonURL = new URL("https://testpages.herokuapp.com/apps/mocktracks/projectsjson.php");
 
             // Create a JsonPath object using the URL
             JsonPath jsonPath = new JsonPath(jsonURL);
@@ -186,6 +186,35 @@ Using the jsonPath object, you can access and retrieve data from the JSON conten
 This URL can be any web address that returns JSON content, 
 such as a REST API endpoint or a web URL hosting a JSON file. 
 This allows you to fetch and process JSON data directly from the internet.
+
+
+public class JsonPath {
+// String constructor
+public JsonPath(String json) {
+// Implementation
+}
+
+    // File constructor
+    public JsonPath(File jsonFile) {
+        // Implementation
+    }
+
+    // InputStream constructor
+    public JsonPath(InputStream jsonStream) {
+        // Implementation
+    }
+
+    // URL constructor
+    public JsonPath(URL jsonURL) {
+        // Implementation
+    }
+
+    // Reader constructor
+    public JsonPath(Reader jsonReader) {
+        // Implementation
+    }
+}
+
 
 
 

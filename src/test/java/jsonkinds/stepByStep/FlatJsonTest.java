@@ -15,11 +15,12 @@ public class FlatJsonTest {
              }
      */
     /*
-    it is a JSON object with keys and values
+    it is a JSON object
 
     it is a flat structure where the keys and values are directly within the main object.
 
     The main object is called root and the keys and values are called properties
+    accesses the root of the JSON directly by calling jsonPath.getMap("")
 
 
      */

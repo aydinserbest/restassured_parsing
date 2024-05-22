@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.io.File;
 import java.util.Map;
 
-public class FlatJsonTest {
+public class FlatJsonTest1 {
 
     /*
             {

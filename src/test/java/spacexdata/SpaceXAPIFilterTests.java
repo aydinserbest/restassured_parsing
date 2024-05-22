@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
+
 public class SpaceXAPIFilterTests {
     private final String baseEndpoint = "https://api.spacexdata.com/v3/launches";
 

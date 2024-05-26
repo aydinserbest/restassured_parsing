@@ -13,6 +13,12 @@ target/
 *.ipr
 .idea
 
+###config.properties file
+src/test/resources/config.properties
+
+src/test/java/trello_API/TrelloBoardTests.java
+
+
 ### Eclipse ###
 .apt_generated
 .classpath

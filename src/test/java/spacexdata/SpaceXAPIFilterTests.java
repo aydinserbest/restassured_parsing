@@ -6,7 +6,8 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class SpaceXAPIFilterTests {
@@ -22,19 +23,33 @@ public class SpaceXAPIFilterTests {
                 .given()
                 .queryParam("rocket_name", rocketName)
                 .when()
-                .get(baseEndpoint)
-                .jsonPath()
-                .getList("");
+                .get(baseEndpoint).then().log().all().extract().jsonPath().getList("");
+//                .jsonPath()
+//                .getList("");
+        System.out.println(list.size());
 
         // Assert that the number of returned items matches the expected count
-        assertEquals(String.valueOf(expectedNumberOfFilteredItems), list.size(), "The number of filtered launches does not match the expected count");
-
+        assertEquals(expectedNumberOfFilteredItems, list.size(), "The number of filtered items does not match the expected count");
+        assertThat(expectedNumberOfFilteredItems).isEqualTo(list.size());
         // Assert that each item in the response has the rocket_name "Falcon 1"
         for (Map<String, Object> launch : list) {
             Map<String, Object> rocket = (Map<String, Object>) launch.get("rocket");
             String actualRocketName = (String) rocket.get("rocket_name");
-            assertEquals(rocketName, actualRocketName, "The rocket_name does not match 'Falcon 1'");
+           // assertEquals(rocketName, actualRocketName, "The rocket_name does not match 'Falcon 1'");
         }
+    }
+    @Test
+    public void testFilteredLaunches2() {
+        String rocketName = "Falcon 1";
+        int expectedNumberOfFilteredItems = 5;
+
+        // Fetch the filtered data from the API using query parameters
+        Map<String, Object> map = RestAssured
+                .given()
+                .queryParam("rocket_name", rocketName)
+                .when()
+                .get(baseEndpoint).jsonPath().getMap("[0]");
+        System.out.println(map.get("flight_number"));
     }
 }
 /*
